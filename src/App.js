@@ -3,19 +3,7 @@ import Axios from "axios";
 import './App.css';
 
 function App() {
-  const [data, setData] = useState(null);
-
-  // Attempt to fetch data on page render 
-  // function componentDidMount() {
-  //   Axios.get("https://api.nhs.uk/conditions/coronavirus-covid-19/faqs", {
-  //     headers: {
-  //       "subscription-key": "30dad3f05e124ca2832649645958f434"
-  //     }
-  //   }).then((response) => {
-  //     console.log(response.data.mainEntity);
-  //     setData(response.data.mainEntity[1]);
-  //   });
-  // }
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     Axios.get("https://api.nhs.uk/conditions/coronavirus-covid-19/faqs", {
@@ -24,19 +12,23 @@ function App() {
       }
     }).then((response) => {
       console.log(response.data.mainEntity);
-      setData(response.data.mainEntity[0]);
+      setData(response.data.mainEntity);
     });
   });
 
   return (
-
     <div className="App">
-      {/* {componentDidMount()} Caused a fetch loop - removed*/}
+      {/* <button onClick={getFaqs}>Request Covid-19 FAQs</button> */}
       <h1>Covid FAQ</h1>
-      <h2>{data?.name}</h2>
-      <p>{data?.acceptedAnswer.text}</p>
-      <a href={data?.sameAs}>Visit the NHS site</a>
-      {/* {data.map((data, i) => (<h2>{data.name}</h2>))} */}
+      {data.map(item => (
+        <>
+          <h2>{item?.name ?? 'Name'}</h2>
+          <p>{item?.acceptedAnswer.text ?? 'Answer'}</p>
+          {item?.sameAs && (
+            <a href={item?.sameAs}>Visit the NHS site</a>
+          )}
+        </>
+      ))}
     </div>
   );
 }
