@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import './App.css';
+//import './App.css';
 import logo from './logo.png';
+import {
+  Card, CardText, CardBody,
+  CardTitle, Button, Row, Col, Container
+} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
-
   // Call the API and set the useState.
   const [data, setData] = useState([]);
   useEffect(() => { // API data loaded on page load.
@@ -18,23 +23,36 @@ function App() {
     });
   });
 
+  // Generate cards containing data from the API using a map()
+  const NHSCard = (props) => {
+    return (
+      <Col sm="4">
+        <div>
+          {data.map(item => (
+            <>
+              <Card>
+                <CardBody body>
+                  <CardTitle tag="h5">{item.name ?? 'Name'}</CardTitle>
+                  <CardText>{item.acceptedAnswer.text ?? 'Answer'}</CardText>
+                  <Button href={item.sameAs}>View Source</Button>
+                </CardBody>
+              </Card>
+            </>
+          ))}
+        </div>
+      </Col>
+    );
+  };
+
   return (
     <div className="App">
-      {/* <button onClick={getFaqs}>Request Covid-19 FAQs</button> initially used to load data */}
-      <header>
-        <div className="container">
-          <h1 className="logo">Covid-19 FAQs</h1>
-        </div>
-      </header>
-      <body className="info">
-        {data.map(item => (
-          <>
-            <h2 className="text">{item.name ?? 'Name'}</h2>
-            <p className="text">{item.acceptedAnswer.text ?? 'Answer'}</p>
-            <a className="text" href={item.sameAs} target="_blank">Visit this page on the official NHS site</a>
-          </>
-        ))}
-      </body>
+      <Container>
+        <Row>
+          <NHSCard />
+        </Row>
+      </Container>
+
+
       <img className="nhs" src={logo} alt="NHS Attribution" />
     </div>
   );
