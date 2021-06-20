@@ -1,10 +1,10 @@
-.container {
-	width: 80%;
-	margin: 0 auto;
+.App {
+  flex-direction: column;
 }
 
 header {
   background: #005EB8;
+  color: #fff;
 }
 
 body {
@@ -25,7 +25,7 @@ body {
 }
 
 .nhs {
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
@@ -33,4 +33,13 @@ body {
   padding-bottom: 40px;
   height: 75px;
   width: 360px;
+  flex:1;
+}
+
+.card {
+  float: left;
+  margin: 5px;
+  max-width: 300px;
+  flex:1;
+  align-items: flex-start;
 }
