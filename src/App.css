@@ -1,29 +1,16 @@
 .App {
-  font-family: Frutiger, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  flex-direction: column;
 }
 
 header {
-  background: hsl(209, 100%, 36%);
+  background: #005EB8;
   color: #fff;
-  padding: 25px 15px 0px;
-}
-header h1 {
-  color: #fff;
-  font-size: 48px;
-  font-weight: 500;
-  text-align: center;
-  padding: 0px 0px 25px 0px; 
-  margin: 0 auto;
 }
 
-main {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  background: #fff;
+body {
+	margin: 0;
+	background: #fff;
+	font-family: Frutiger, sans-serif;
 }
 
 .logo {
@@ -37,36 +24,22 @@ main {
   padding-right: 25px;
 }
 
-.footer{
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  bottom: 0px;
-}
 .nhs {
-  width: 360px;
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
+  width: 50%;
   padding-top: 40px;
   padding-bottom: 40px;
+  height: 75px;
+  width: 360px;
+  flex:1;
 }
 
-.cards {
-  display: flex;
-	flex-wrap: wrap;
-	margin: 0px -15px;
-  align-items: center;
-  justify-content: center;
-}
-.cards .card {
-	width: 30%;
-	min-width: 250px;
-	padding: 15px;
-	display: flex;
-	flex-direction: column;
-  margin: 10px;
-}
-.cards .card .cardTitle {
-  font-weight: bold;
+.card {
+  float: left;
+  margin: 5px;
+  max-width: 300px;
+  flex:1;
+  align-items: flex-start;
 }
